@@ -185,6 +185,17 @@ var MaterialSwitch = React.createClass({
     this.props.onChangeState(state);
   },
 
+    switchState(state) {
+        this.setState({state : state});
+        Animated.timing(
+            this.state.position,
+            {
+                toValue: state ? this.state.width : 0,
+                duration: this.props.switchAnimationTime,
+            }
+        ).start();
+    },
+
   toggle() {
     if (!this.props.enableSlide) return;
 
